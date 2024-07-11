@@ -55,6 +55,7 @@ export class TestinyAPIClient {
                 },
             ],
         };
+        
         const response = await this.client.get<TestPlanResponse>(`/testcase`, {
             params: JSON.stringify(queryParam),
         });
@@ -67,7 +68,7 @@ export class TestinyAPIClient {
         return testCases;
     }
 
-    async updateTestCaseFromTestRun(data: TestRunQuery[]) {
+    async updateTestCaseFromTestRun(data: TestRunQuery[]): Promise<void> {
         await this.client.post(
             '/testrun/mapping/bulk/testcase:testrun?op=update',
             JSON.stringify(data)
